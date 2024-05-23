@@ -60,16 +60,6 @@ public:
         main_thread_state = PyEval_SaveThread();
     }
 
-    /*void PythonMainEVN_Enable_Thread()
-    {
-        main_thread_state = PyEval_SaveThread();
-    }
-
-    void PythonMainEVN_Disable_Thread()
-    {
-        PyEval_RestoreThread(main_thread_state);
-    }*/
-
     virtual ~Python_MainENV_Manager()
     {
         // 恢复主线程环境
@@ -206,14 +196,5 @@ void async_Call_By_Name(T<RT>& future_out,
 {
     async_Call_By_Name(std::move(future_out), module_name, object_name, std::forward<Args>(args)...);
 }
-
-/*#define PYMAINTHREAD_ENABLE           \
-    assert(python_main_thread_state); \
-    python_main_thread_state->PythonMainEVN_Enable()
-
-#define PYMAINTHREAD_DISABLE          \
-    assert(python_main_thread_state); \
-    python_main_thread_state->PythonMainEVN_Disable()
-*/
 
 #endif /* ifndef PYEMBED_ENV_H */
